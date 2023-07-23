@@ -12343,6 +12343,9 @@ body:not(.is-grabbing) .nav-folder-title.is-being-dragged .nav-file-tag,
   color: var(--vault-name-color);
   font-weight: var(--vault-name-font-weight);
   cursor: default;
+  margin-left: auto;
+  margin-right: auto;
+  flex: initial;
 }
 
 .vault-list-item {
