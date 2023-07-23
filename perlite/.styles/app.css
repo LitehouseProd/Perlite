@@ -9292,24 +9292,13 @@ em {
 .nav-files-container:not(.show-unsupported) .is-unsupported {
   display: none;
 }
-.nav-file-title-content {
+.nav-file-title-content,
+.nav-folder-title-content {
   display: inline-block;
   overflow-wrap: anywhere;
   overflow: hidden;
   white-space: var(--nav-item-white-space);
   text-overflow: ellipsis;
-}
-.folder-title {
-  display: inline-block;
-  overflow-wrap: anywhere;
-  overflow: hidden;
-  position: relative;
-  text-align: center;
-  text-overflow: ellipsis;
-  font-size: var(--vault-name-font-size);
-  color: var(--vault-name-color);
-  font-weight: var(--vault-name-font-weight);
-  cursor: default;
 }
 .nav-file-title-content.is-being-renamed,
 .nav-folder-title-content.is-being-renamed {
@@ -10453,6 +10442,18 @@ body:not(.is-grabbing) .nav-folder-title.is-being-dragged .nav-file-tag,
 }
 .mod-sync-history .modal-content {
   height: 100%;
+}
+.vault-folder-title {
+  display: inline-block;
+  overflow-wrap: anywhere;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  text-overflow: ellipsis;
+  font-size: var(--vault-name-font-size);
+  color: var(--vault-name-color);
+  font-weight: var(--vault-name-font-weight);
+  cursor: default;
 }
 .vault-list-item {
   margin: 6px 0;

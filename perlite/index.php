@@ -11,7 +11,7 @@ require 'helper.php';
 
 $title = 'Perlite';
 $menu = menu($rootDir);
-$jsonGraphData = getfullGraph($rootDir);
+//$jsonGraphData = getfullGraph($rootDir);
 
 
 ?>
@@ -114,7 +114,7 @@ $jsonGraphData = getfullGraph($rootDir);
                                 <div class="workspace-leaf-content" data-type="file-explorer">
                                     <img src="logo.svg" class="logo" alt="Perlite Logo">
                                     <div class="tree-item-self nav-folder-title" data-path="/">
-                                        <div class="folder-title"><?php echo $vaultName ?></div>
+                                        <div class="vault-folder-title"><?php echo $vaultName ?></div>
                                     </div>
                                     <div class="search-input-container"><input enterkeyhint="search" type="search" placeholder="Type to start search...">
                                         <div class="search-input-clear-button" aria-label="Clear search" style="display: none;" style="position:relative;"></div>
