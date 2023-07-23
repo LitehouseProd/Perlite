@@ -2073,22 +2073,7 @@ body:not(.show-inline-title) .inline-title:not([data-level]) {
 .markdown-rendered.rtl {
   direction: rtl;
 }
-/* Ribbon */
-/* Add background to top left corner space above ribbon */
-.workspace-ribbon.mod-left {
-  margin-top: var(--header-height);
-  /* Add the tab background in the top left corner */
-}
-.workspace-ribbon.mod-left:before {
-  position: absolute;
-  left: 0;
-  top: 0;
-  background-color: var(--titlebar-background);
-  content: " ";
-  border-bottom: var(--tab-outline-width) solid var(--tab-outline-color);
-  height: calc(var(--header-height) - var(--tab-outline-width));
-  width: var(--ribbon-width);
-}
+
 .workspace-ribbon {
   width: var(--ribbon-width);
   flex: 0 0 var(--ribbon-width);
@@ -2152,7 +2137,7 @@ body:not(.show-inline-title) .inline-title:not([data-level]) {
 .setting-explanation {
   color: var(--text-muted);
 }
-.modal.mod-new-editor {
+.modal.mod-editor {
   max-width: 600px;
 }
 .modal.mod-trust-folder {
@@ -3121,7 +3106,7 @@ body.is-phone .view-header-nav-buttons {
 .workspace-leaf-content .video-container {
   text-align: center;
 }
-.workspace-leaf-content img:not([width]),
+
 .workspace-leaf-content audio,
 .workspace-leaf-content video {
   max-width: 100%;
@@ -5011,11 +4996,11 @@ body:not(.native-scrollbars) .modal-close-button {
   right: 0;
 }
 .nav-header {
-  padding: var(--size-4-2);
+  padding: 0;
 }
 .nav-header ~ .search-input-container {
   padding: 0;
-  width: calc(100% - var(--size-4-8));
+  width: 100%;
   margin: 4px auto;
 }
 .nav-buttons-container {
@@ -9312,8 +9297,13 @@ em {
   display: inline-block;
   overflow-wrap: anywhere;
   overflow: hidden;
-  white-space: var(--nav-item-white-space);
+  position: relative;
+  text-align: center;
   text-overflow: ellipsis;
+  font-size: var(--vault-name-font-size);
+  color: var(--vault-name-color);
+  font-weight: var(--vault-name-font-weight);
+  cursor: default;
 }
 .nav-file-title-content.is-being-renamed,
 .nav-folder-title-content.is-being-renamed {
@@ -10065,9 +10055,14 @@ body:not(.is-grabbing) .nav-folder-title.is-being-dragged .nav-file-tag,
   display: none;
 }
 .search-result-container {
-  padding: var(--size-4-3) var(--size-4-3) var(--size-4-4);
-  position: relative;
-  flex: 1 0 0;
+  position: absolute;
+  max-height: 600px;
+  overflow: auto;
+  margin-right: 10px;
+  line-height: 1.2em;
+  border-radius: 4px;
+  z-index: 60;
+  max-width: 400px;
 }
 .search-result-container.mod-global-search {
   overflow-y: auto;

@@ -76,11 +76,7 @@ $jsonGraphData = getfullGraph($rootDir);
         <div class="horizontal-main-container">
             <div class="workspace is-left-sidedock-open">
                 <div class="workspace-ribbon side-dock-ribbon mod-left">
-
-                    <a href="."><img src="logo.svg" height="25" class="logo" alt="Perlite Logo"></a>
                     <div class="sidebar-toggle-button mod-left sidebar" aria-label="" aria-label-position="right">
-
-
                         <div class="clickable-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon sidebar-left">
                                 <path d="M21 3H3C1.89543 3 1 3.89543 1 5V19C1 20.1046 1.89543 21 3 21H21C22.1046 21 23 20.1046 23 19V5C23 3.89543 22.1046 3 21 3Z"></path>
                                 <path d="M10 4V20"></path>
@@ -114,78 +110,27 @@ $jsonGraphData = getfullGraph($rootDir);
                     <hr class="workspace-leaf-resize-handle left-dock">
                     <div class="workspace-tabs mod-top mod-top-left-space">
                         <hr class="workspace-leaf-resize-handle">
-                        <div class="workspace-tab-header-container">
-                            <div class="workspace-tab-header-container-inner" style="--animation-dur:250ms;">
-                                <div class="workspace-tab-header is-active" draggable="true" aria-label="Files" aria-label-delay="50" data-type="file-explorer">
-                                    <div class="workspace-tab-header-inner">
-                                        <div class="workspace-tab-header-inner-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-folder-closed">
-                                                <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"></path>
-                                                <path d="M2 10h20"></path>
-                                            </svg></div>
-                                        <div class="workspace-tab-header-inner-title">Files</div>
-                                        <div class="workspace-tab-header-status-container"></div>
-                                        <div class="workspace-tab-header-inner-close-button" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-x">
-                                                <line x1="18" y1="6" x2="6" y2="18"></line>
-                                                <line x1="6" y1="6" x2="18" y2="18"></line>
-                                            </svg></div>
-                                    </div>
-                                </div>
-                                <div class="workspace-tab-header" draggable="true" aria-label="Search" aria-label-delay="50" data-type="search">
-                                    <div class="workspace-tab-header-inner">
-                                        <div class="workspace-tab-header-inner-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-search">
-                                                <circle cx="11" cy="11" r="8"></circle>
-                                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                            </svg></div>
-                                        <div class="workspace-tab-header-inner-title">Search</div>
-                                        <div class="workspace-tab-header-status-container"></div>
-                                        <div class="workspace-tab-header-inner-close-button" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-x">
-                                                <line x1="18" y1="6" x2="6" y2="18"></line>
-                                                <line x1="6" y1="6" x2="18" y2="18"></line>
-                                            </svg></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="workspace-tab-header-new-tab"><span class="clickable-icon" aria-label="New tab"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-plus">
-                                        <line x1="12" y1="5" x2="12" y2="19"></line>
-                                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    </svg></span></div>
-                            <div class="workspace-tab-header-spacer"></div>
-                            <div class="workspace-tab-header-tab-list"><span class="clickable-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-chevron-down">
-                                        <polyline points="6 9 12 15 18 9"></polyline>
-                                    </svg></span></div>
-                        </div> <!-- left dock -->
                         <div class="workspace-tab-container">
-                            <div class="workspace-leaf">
-                                <hr class="workspace-leaf-resize-handle">
                                 <div class="workspace-leaf-content" data-type="file-explorer">
-                                    <div class="nav-header">
-                                        <div class="nav-buttons-container">
-                                            <div class="clickable-icon nav-action-button" aria-label="Collapse all" style="display: none"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-chevrons-down-up">
-                                                    <path d="m7 20 5-5 5 5"></path>
-                                                    <path d="m7 4 5 5 5-5"></path>
-                                                </svg></div>
-                                            <div class="clickable-icon nav-action-button" aria-label="Expand all"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-chevrons-up-down">
-                                                    <path d="m7 15 5 5 5-5"></path>
-                                                    <path d="m7 9 5-5 5 5"></path>
-                                                </svg></div>
-                                        </div>
-                                    </div>
-                                    <div class="nav-files-container node-insert-event" style="position: relative;">
+                                        <img src="logo.svg" class="logo" alt="Perlite Logo">
+                                    <div class="nav-folder-title-content"><?php echo $vaultName ?></div>
+                                    <div class="nav-files-container node-insert-event">
                                         <div class="tree-item nav-folder mod-root">
                                             <div class="tree-item-self nav-folder-title" data-path="/">
-                                                <!-- <div class="nav-folder-collapse-indicator collapse-icon"></div> -->
-                                                <div class="tree-item-inner nav-folder-title-content"><?php echo $vaultName ?></div>
                                             </div>
-                                            <div class="tree-item-children nav-folder-children">
+                                            <div class="search-input-container"><input enterkeyhint="search" type="search" placeholder="Type to start search...">
+                                                <div class="search-input-clear-button" aria-label="Clear search" style="display: none;" style="position:relative;"></div>
+                                            </div>
+                                            <div class="tree-item-children nav-folder-children" style="position:relative;">
                                                 <div style="width: 276px; height: 0.1px; margin-bottom: 0px;"></div>
                                                 <?php echo $menu ?>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="workspace-leaf" style="display: none;">
-                                <!-- search container -->
+                            <!-- </div> -->
+                            <!-- <div class="workspace-leaf">
+                                search container
                                 <hr class="workspace-leaf-resize-handle">
                                 <div class="workspace-leaf-content" data-type="search">
                                     <div class="nav-header">
@@ -200,9 +145,7 @@ $jsonGraphData = getfullGraph($rootDir);
                                                 </svg></div>
                                         </div>
                                     </div>
-                                    <div class="search-input-container"><input enterkeyhint="search" type="search" placeholder="Type to start search...">
-                                        <div class="search-input-clear-button" aria-label="Clear search" style="display: none;"></div>
-                                    </div>
+                                    
                                     <div class="search-info-container" style="display: none;"></div>
                                     <div class="search-result-container mod-global-search node-insert-event" style="position: relative;">
                                         <div class="search-results-children" style="min-height: 0px;">
@@ -210,7 +153,7 @@ $jsonGraphData = getfullGraph($rootDir);
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -511,6 +454,11 @@ $jsonGraphData = getfullGraph($rootDir);
                     </div>
                 </div>
                 <div class="workspace-ribbon side-dock-ribbon mod-right is-collapsed"></div>
+            </div>
+            <div class="search-result-container mod-global-search node-insert-event" style="position: relative;">
+                <div class="search-results-children" style="min-height: 0px;">
+                    <div style="width: 1px; height: 0.1px; margin-bottom: 0px;"></div>
+                </div>
             </div>
         </div>
         <div class="status-bar">
