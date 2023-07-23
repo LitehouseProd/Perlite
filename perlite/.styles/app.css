@@ -9292,8 +9292,14 @@ em {
 .nav-files-container:not(.show-unsupported) .is-unsupported {
   display: none;
 }
-.nav-file-title-content,
-.nav-folder-title-content {
+.nav-file-title-content {
+  display: inline-block;
+  overflow-wrap: anywhere;
+  overflow: hidden;
+  white-space: var(--nav-item-white-space);
+  text-overflow: ellipsis;
+}
+.folder-title {
   display: inline-block;
   overflow-wrap: anywhere;
   overflow: hidden;

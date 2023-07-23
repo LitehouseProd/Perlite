@@ -112,15 +112,15 @@ $jsonGraphData = getfullGraph($rootDir);
                         <hr class="workspace-leaf-resize-handle">
                         <div class="workspace-tab-container">
                                 <div class="workspace-leaf-content" data-type="file-explorer">
-                                        <img src="logo.svg" class="logo" alt="Perlite Logo">
-                                    <div class="nav-folder-title-content"><?php echo $vaultName ?></div>
+                                    <img src="logo.svg" class="logo" alt="Perlite Logo">
+                                    <div class="tree-item-self nav-folder-title" data-path="/">
+                                        <div class="folder-title"><?php echo $vaultName ?></div>
+                                    </div>
+                                    <div class="search-input-container"><input enterkeyhint="search" type="search" placeholder="Type to start search...">
+                                        <div class="search-input-clear-button" aria-label="Clear search" style="display: none;" style="position:relative;"></div>
+                                    </div>
                                     <div class="nav-files-container node-insert-event">
                                         <div class="tree-item nav-folder mod-root">
-                                            <div class="tree-item-self nav-folder-title" data-path="/">
-                                            </div>
-                                            <div class="search-input-container"><input enterkeyhint="search" type="search" placeholder="Type to start search...">
-                                                <div class="search-input-clear-button" aria-label="Clear search" style="display: none;" style="position:relative;"></div>
-                                            </div>
                                             <div class="tree-item-children nav-folder-children" style="position:relative;">
                                                 <div style="width: 276px; height: 0.1px; margin-bottom: 0px;"></div>
                                                 <?php echo $menu ?>
@@ -454,11 +454,6 @@ $jsonGraphData = getfullGraph($rootDir);
                     </div>
                 </div>
                 <div class="workspace-ribbon side-dock-ribbon mod-right is-collapsed"></div>
-            </div>
-            <div class="search-result-container mod-global-search node-insert-event" style="position: relative;">
-                <div class="search-results-children" style="min-height: 0px;">
-                    <div style="width: 1px; height: 0.1px; margin-bottom: 0px;"></div>
-                </div>
             </div>
         </div>
         <div class="status-bar">
