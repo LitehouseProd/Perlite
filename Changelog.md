@@ -1,3 +1,11 @@
+## 1.5.7
+- added social media meta tags and variables
+- added github action for docker build process and arm support, issue #
+- improved loading performance, the graph linking will only be done at the first page load, issue #97
+- provided a python script to perform as alternative for the link generation, issue #97
+- updated highlight.js to 11.8.0
+
+
 ## 1.5.6
 - fixed heading references (issue #74)
 - added safemode environment variable (PR #88) thanks to @NotGovernor
@@ -18,7 +26,6 @@
 - updated jquery to 3.7.0
 - updated mermaid to 8.12.1
 - updated vis-network to 9.1.6
-
 
 
 ## 1.5.4
@@ -80,6 +87,7 @@
 
 ## 1.4.5 RC
 - added "edit button", enable it via cookie, thx to @Tooa
+
 
 ## 1.4.4
 - some code cleanup

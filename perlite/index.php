@@ -4,8 +4,9 @@
 <?php
 
 /*!
- * Version v1.5.5
- */
+  * Version v1.5.7
+*/
+
 
 require 'helper.php';
 
@@ -30,13 +31,12 @@ $jsonGraphData = getfullGraph($rootDir);
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 
-    <link href=".styles/app.css" type="text/css" rel="stylesheet">
     <?php echo loadSettings($rootDir); ?>
-
-    <link id="highlight-js" rel="stylesheet" href=".styles/atom-one-dark.min.css">
-    <link rel="stylesheet" href=".styles/perlite.css">
-    <link rel="stylesheet" href=".styles/vis-network.min.css" />
-    <link rel="stylesheet" href=".styles/katex.min.css">
+    <link rel="stylesheet" href=".styles/app.css" type="text/css" >
+    <link id="highlight-js" rel="stylesheet" href=".styles/atom-one-dark.min.css" type="text/css">
+    <link rel="stylesheet" href=".styles/perlite.css" type="text/css">
+    <link rel="stylesheet" href=".styles/vis-network.min.css" type="text/css">
+    <link rel="stylesheet" href=".styles/katex.min.css" type="text/css">
 
     <script src=".js/jquery.min.js"></script>
     <script src=".js/highlight.min.js"></script>
