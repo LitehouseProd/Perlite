@@ -338,7 +338,7 @@ function isValidFolder($file)
 
 function getfullGraph($rootDir)
 {
-
+	$startTime = microtime(true);
 	global $tempPath;
 	global $vaultName;
 	$jsonMetadaFile = $rootDir . '/metadata.json';
@@ -349,20 +349,6 @@ function getfullGraph($rootDir)
 	if (!is_file($jsonMetadaFile)) {
 		return;
 	}
-
-	// check if metadata file has changed
-	if (is_file($metadaTempFileSum) && is_file($metadaTempFile)) {
-		$md5_envsum = file_get_contents($metadaTempFileSum);
-		$md5_filesum = md5_file($jsonMetadaFile);
-		
-		if ($md5_envsum === $md5_filesum) {
-			if (!is_file($metadaTempFile)) {
-				return;
-			}
-			return file_get_contents($metadaTempFile);
-		}
-	}
-
 
 	$jsonData = file_get_contents($jsonMetadaFile);
 
@@ -377,6 +363,23 @@ function getfullGraph($rootDir)
 
 	$graphNodes = array();
 	$graphEdges = array();
+
+	// check if metadata file has changed
+	if (is_file($metadaTempFileSum) && is_file($metadaTempFile)) {
+		$md5_envsum = file_get_contents($metadaTempFileSum);
+		$md5_filesum = md5_file($jsonMetadaFile);
+		
+		if ($md5_envsum === $md5_filesum) {
+			if (!is_file($metadaTempFile)) {
+				return;
+			}
+			return file_get_contents($metadaTempFile);
+		}
+		$runTime = microtime(true);
+		if ($runTime-$startTime>30) {
+			return;
+		}
+	}
 
 	$currentNode = -1;
 
@@ -400,6 +403,11 @@ function getfullGraph($rootDir)
 	foreach ($json_obj as $index => $node) {
 
 		$nodePath = removeExtension($node['relativePath']);
+		//kickout before timeout occurs
+		$runTime = microtime(true);
+		if ($runTime-$startTime>30) {
+			return;
+		}
 
 		// check if node from the json file really exists
 		if (checkArray($nodePath)) {
