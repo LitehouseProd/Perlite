@@ -25,26 +25,37 @@ if ($('#disablePopHovers').data('option') == true && localStorage.getItem("disab
 }
 
 // show toc
-if ($('#showTOC').data('option') == true && localStorage.getItem("showTOC") === null) {
+if ($('#showTOC').data('option') == false || localStorage.getItem("showTOC") === false) {
 
-  $('.clickable-icon.view-action[aria-label="Open outline"]').css('display', 'none')
-  $('.clickable-icon.view-action[aria-label="Open localGraph"]').css('display', 'unset')
+  localStorage.setItem("showTOC", "false")
+  $('#outline').css('display', 'none')
+}
 
-  localStorage.setItem("showTOC", "true")
-  $('#mynetwork').css('display', 'none')
-  $('#outline').css('display', 'unset')
+if ($('#showLocalGraph').data('option') == false || localStorage.getItem("showLocalGraph") === false) {
 
+  localStorage.setItem("showLocalGraph", "false")
+  $('#localGraph').css('display', 'none')
 }
 
 
-// scroll to anchor
+
+/**
+ * scroll to anchor
+ * @param {String} aid
+ */
 function scrollToAnchor(aid) {
   var aTag = $("a[name='" + aid + "']");
   $('html,body,div').animate({ scrollTop: aTag.offset().top }, 'slow');
 }
 
 
-// get markdown content
+/**
+ * get markdown content
+ * @param {String} str
+ * @param {Boolean} home
+ * @param {Boolean} popHover
+ * @param {String} anchor
+ */
 function getContent(str, home = false, popHover = false, anchor = "") {
 
   // reset content if request is empty
@@ -97,7 +108,7 @@ function getContent(str, home = false, popHover = false, anchor = "") {
 
             $("title").text(title + ' - ' + $("p.vault").text() + ' - ' + $("p.perliteTitle").text());
 
-            // set edit button url       
+            // set edit button url
             $('.clickable-icon.view-action[aria-label="Click to edit"]')
               .attr("href", "obsidian://open?vault=" + encodeURIComponent($("p.vault").text()) + "&file=" + encodeURIComponent(title))
           }
@@ -114,17 +125,16 @@ function getContent(str, home = false, popHover = false, anchor = "") {
                 if (openLevel != closeLevel) {
                   return str;
                 }
-
                 if (openLevel > level) {
-                  toc += (new Array(openLevel - level + 1)).join('<div class="tree-item"><div class="tree-item-children">');
+                  toc += (new Array(openLevel - level + 1)).join('<div class="tree-item tree-item-children">');
                 } else if (openLevel < level) {
-                  toc += (new Array(level - openLevel + 1)).join("</div></div>");
+                  toc += (new Array(level - openLevel + 1)).join("</div>");
                 }
 
                 level = parseInt(openLevel);
 
                 var anchor = titleText.replace(/ /g, "_");
-                toc += '<div class="tree-item-self is-clickable"><a href="#' + anchor + '">' + titleText
+                toc += '<div class="tree-item-self is-clickable toc-item"><a href="#' + anchor + '">' + titleText
                   + '</a></div>';
 
                 return "<h" + openLevel + "><a name='" + anchor + "' >"
@@ -189,19 +199,56 @@ function getContent(str, home = false, popHover = false, anchor = "") {
               $('.mod-left').removeClass('is-collapsed');
               $('.workspace-ribbon.side-dock-ribbon.mod-left').css('display', 'flex');
 
-            };
+            }
 
           });
 
           // Toogle Front Matter Meta Container
-          $('.frontmatter-container-header').click(function (e) {
+          $('.metadata-properties-heading').click(function (e) {
 
             e.preventDefault();
 
-            if ($('.frontmatter-container').hasClass('is-collapsed')) {
-              $('.frontmatter-container').removeClass('is-collapsed');
+            if ($('.metadata-container').hasClass('is-collapsed')) {
+              $('.metadata-container').removeClass('is-collapsed');
             } else {
-              $('.frontmatter-container').addClass('is-collapsed');
+              $('.metadata-container').addClass('is-collapsed');
+            }
+
+          });
+
+          // Toogle Collapsable Callout Container
+          $('.callout.is-collapsible').on('click', function (e) {
+
+            e.preventDefault();
+            e.stopPropagation();
+            target = $(e.target);
+
+            for (let i = 0; i < 5; i++) {
+              if (target.is('.callout', 'is-collapsible')) {
+                break;
+              }
+              target = target.parent()
+            }
+
+            calloutContent = target.find('.callout-content')
+            calloutIcon = target.find('.callout-fold')
+
+            if (calloutContent.hasClass('is-collapsed-callout')) {
+              calloutContent.removeClass('is-collapsed-callout');
+            } else {
+              calloutContent.addClass('is-collapsed-callout');
+            }
+
+            if (calloutIcon.hasClass('is-collapsed')) {
+              calloutIcon.removeClass('is-collapsed');
+            } else {
+              calloutIcon.addClass('is-collapsed');
+            }
+
+            if (target.hasClass('is-collapsed')) {
+              target.removeClass('is-collapsed');
+            } else {
+              target.addClass('is-collapsed');
             }
 
           });
@@ -270,7 +317,7 @@ function getContent(str, home = false, popHover = false, anchor = "") {
 
           //check setting if metadata is collapsed or not
           if ($('.metadataOption').hasClass('is-enabled')) {
-            $('.frontmatter-container-header').trigger('click')
+            $('.metadata-properties-heading').trigger('click')
           }
           mdContent = $("#mdContent")[0]
 
@@ -297,7 +344,7 @@ function getContent(str, home = false, popHover = false, anchor = "") {
 
         }
 
-        // highlight code     
+        // highlight code
         hljs.highlightAll();
 
         var snippets = document.getElementsByTagName('pre');
@@ -379,7 +426,12 @@ function getContent(str, home = false, popHover = false, anchor = "") {
   }
 };
 
-// vis js stuff
+/**
+ * vis js stuff
+ * @param {Boolean} modal
+ * @param {String} path
+ * @param {Boolean} filter_emptyNodes
+ */
 function renderGraph(modal, path = "", filter_emptyNodes = false) {
 
   // no graph found exit
@@ -509,7 +561,7 @@ function renderGraph(modal, path = "", filter_emptyNodes = false) {
             filter: function (edge) {
               if (node.id == currId) {
                 return true;
-              };
+              }
               return (
                 (edge.to == node.id) || (edge.from == node.id));
             }
@@ -567,7 +619,7 @@ function renderGraph(modal, path = "", filter_emptyNodes = false) {
     var myNodes = [];
     var myEdges = [];
 
-    options['edges']['length'] = 300;
+    options['edges']['length'] = 250;
 
     // add current node
     for (const x in jsonNodes) {
@@ -665,7 +717,9 @@ function renderGraph(modal, path = "", filter_emptyNodes = false) {
 
 };
 
-// change mobile settings
+/**
+ * change mobile settings
+ */
 function isMobile() {
 
   if ($(window).width() < 990) {
@@ -707,7 +761,10 @@ function hideLeftMobile() {
 
 };
 
-// search  
+/**
+ * search
+ * @param {String} str
+ */
 function search(str) {
   if (str.length == 0) {
     $("div.search-results-children").html("");
@@ -730,20 +787,32 @@ function search(str) {
 };
 
 // edit button
+
+/**
+ * @param {String} name
+ * @returns {string}
+ */
 function getCookie(name) {
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${name}=`);
   if (parts.length === 2) return parts.pop().split(';').shift();
 };
 
-// helper
+/**
+ * helper
+ * @param {String} oldClass
+ * @param {String} newClass
+ */
 function replaceClass(oldClass, newClass) {
   var elem = $("." + oldClass);
   elem.removeClass(oldClass);
   elem.addClass(newClass);
 };
 
-// search entry
+/**
+ * search entry
+ * @param {Event} e
+ */
 function toggleSearchEntry(e) {
 
   el = $(e.target);
@@ -768,9 +837,13 @@ function toggleSearchEntry(e) {
 
 };
 
-// nav menu collapse functions
+/**
+ * nav menu collapse functions
+ * @param {Event} e
+ */
 function toggleNavFolder(e) {
   el = $(e.target);
+  
 
   if (el.hasClass('nav-folder-title-content')) {
     elIcon = el.prev()
@@ -787,6 +860,9 @@ function toggleNavFolder(e) {
   } else if (el.hasClass('svg-icon right-triangle')) {
     elIcon = el.parent()
     el = el.parent().parent()
+    el = el.next(el)
+  } else if (el.is('path')) {
+    el = el.parent().parent().parent()
     el = el.next(el)
 
   }
@@ -808,6 +884,11 @@ function toggleNavFolder(e) {
   return
 };
 
+/**
+ *
+ * @param {String} target
+ * @param {Boolean} openAll
+ */
 function openNavMenu(target, openAll = false) {
 
   // open nav menu to target
@@ -833,7 +914,7 @@ function openNavMenu(target, openAll = false) {
 
   $("div").filter(function () {
     return $(this).text() === searchText;
-  }).parent().addClass('perlite-link-active is-active');;
+  }).parent().addClass('perlite-link-active is-active');
 
 };
 
@@ -869,25 +950,25 @@ $(document).ready(function () {
   if (localStorage.getItem('InlineTitle') === 'hide') {
     $('.inlineTitleOption').removeClass('is-enabled')
     $('body').removeClass('show-inline-title')
-  };
+  }
 
   // metadata
   if (localStorage.getItem('Metadata') === 'hide') {
     $('.metadataOption').addClass('is-enabled')
-    $('.frontmatter-container').addClass('is-collapsed');
-  };
+    $('.metadata-container').addClass('is-collapsed');
+  }
 
   // light mode
   if (localStorage.getItem('lightMode') === 'true') {
     $('body').removeClass('theme-dark')
     $('body').addClass('theme-light')
     $('.darkModeOption').removeClass('is-enabled')
-  };
+  }
 
   // popUp Setting
   if (localStorage.getItem('popUpEnabled') === 'true') {
     $('.popUpSetting').addClass('is-enabled')
-  };
+  }
 
 
 
@@ -919,11 +1000,11 @@ $(document).ready(function () {
 
   if (localStorage.getItem('Graph_Orphans') === 'hide') {
     $('.graphNoLinkOption').removeClass('is-enabled')
-  };
+  }
 
   if (localStorage.getItem('Graph_Autoreload') === 'no') {
     $('.graphAutoReloadOption').removeClass('is-enabled')
-  };
+  }
 
 
   // panel sizes
@@ -937,7 +1018,7 @@ $(document).ready(function () {
     $('.workspace-split.mod-horizontal.mod-right-split').css("width", localStorage.getItem('rightSizePanel'))
   } else {
     $('.workspace-split.mod-horizontal.mod-right-split').css("width", window.innerWidth / 6)
-  };
+  }
 
 
   //check for graph and hide local graph if none exists
@@ -946,8 +1027,8 @@ $(document).ready(function () {
     $('.clickable-icon.side-dock-ribbon-action[aria-label="Open graph view"]').css('display', 'none')
     $('.clickable-icon.view-action[aria-label="Open outline"]').css('display', 'none')
     $('.clickable-icon.view-action[aria-label="Open localGraph"]').css('display', 'none')
-    $('#mynetwork').css('display', 'none')
-    $('#outline').css('display', 'unset')
+    $('#localGraph').css('display', 'none')
+    $('#outline').css('display', 'inline')
 
   }
 
@@ -1218,7 +1299,7 @@ $(document).ready(function () {
     // disable all themes
     $('.theme').attr("disabled", 'disabled');
 
-    //enable selected if its not default 
+    //enable selected if its not default
     selectedTheme = target.val()
 
     if (selectedTheme !== 'Default') {
@@ -1316,7 +1397,7 @@ $(document).ready(function () {
     }
   });
 
-  // Darkmode / Lightmode change 
+  // Darkmode / Lightmode change
   $('.darkModeOption').click(function (e) {
     e.preventDefault();
     target = $('.darkModeOption')
@@ -1361,32 +1442,28 @@ $(document).ready(function () {
 
     if (target.hasClass('is-enabled')) {
       target.removeClass('is-enabled')
-      if ($('.frontmatter-container').hasClass('is-collapsed')) {
-        $('.frontmatter-container').removeClass('is-collapsed');
+      if ($('.metadata-container').hasClass('is-collapsed')) {
+        $('.metadata-container').removeClass('is-collapsed');
       }
       localStorage.removeItem('Metadata');
 
     } else {
       target.addClass('is-enabled')
 
-      if (!$('.frontmatter-container').hasClass('is-collapsed')) {
-        $('.frontmatter-container').addClass('is-collapsed');
+      if (!$('.metadata-container').hasClass('is-collapsed')) {
+        $('.metadata-container').addClass('is-collapsed');
         localStorage.setItem('Metadata', 'hide');
       }
     }
   });
 
 
-  // show toc
-  if (localStorage.getItem("showTOC") === 'true') {
+  // // show toc
+  // if (localStorage.getItem("showTOC") === 'true') {
 
-    $('.clickable-icon.view-action[aria-label="Open outline"]').css('display', 'none')
-    $('.clickable-icon.view-action[aria-label="Open localGraph"]').css('display', 'unset')
+  //   $('#outline').css('display', 'unset')
 
-    $('#mynetwork').css('display', 'none')
-    $('#outline').css('display', 'unset')
-
-  }
+  // }
 
 
 
@@ -1619,7 +1696,25 @@ $(document).ready(function () {
 
   });
 
-  // close modal
+  // open random note
+  $('.clickable-icon.side-dock-ribbon-action[aria-label="Open random note"]').click(function (e) {
+
+    var nodes = JSON.parse($("#allGraphNodes").text())
+    nodesCount = nodes.length
+
+    min = Math.ceil(0);
+    max = Math.floor(nodesCount);
+    randomNode = Math.floor(Math.random() * (max - min) + min)
+    target = '/' + nodes[randomNode]['title']
+    target = encodeURIComponent(target);
+    getContent(target)
+
+  });
+
+  /**
+   * close modal
+   * @param {String[]} elementIds
+   */
   function hideElements(elementIds) {
     elementIds.forEach(function (id) {
       $("#" + id).css("display", "none");
@@ -1639,22 +1734,28 @@ $(document).ready(function () {
   // local Graph & Toc (outline) Switch
   $('.clickable-icon.view-action[aria-label="Open outline"]').click(function (e) {
 
-    $('.clickable-icon.view-action[aria-label="Open outline"]').css('display', 'none')
-    $('.clickable-icon.view-action[aria-label="Open localGraph"]').css('display', 'unset')
+    
+    if ($('#outline').css('display') == 'inline') {
+      localStorage.setItem("showTOC", "false")
+      $('#outline').css('display', 'none')
+    
 
-    localStorage.setItem("showTOC", "true")
-    $('#mynetwork').css('display', 'none')
-    $('#outline').css('display', 'unset')
+    } else {
+      localStorage.setItem("showTOC", "true")
+      $('#outline').css('display', 'inline')
+    }
+    
   });
 
   $('.clickable-icon.view-action[aria-label="Open localGraph"]').click(function (e) {
 
-    $('.clickable-icon.view-action[aria-label="Open outline"]').css('display', 'unset')
-    $('.clickable-icon.view-action[aria-label="Open localGraph"]').css('display', 'none')
-
-    localStorage.setItem("showTOC", "false")
-    $('#mynetwork').css('display', 'unset')
-    $('#outline').css('display', 'none')
+    if ($('#localGraph').css('display') == 'inline') {
+      localStorage.setItem("showLocalGraph", "false")
+      $('#localGraph').css('display', 'none')
+    } else {
+      localStorage.setItem("showLocalGraph", "true")
+      $('#localGraph').css('display', 'inline')
+    }
   });
 
 

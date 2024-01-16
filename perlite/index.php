@@ -4,8 +4,8 @@
 <?php
 
 /*!
-  * Version v1.5.7
-*/
+ * Version v1.5.8
+ */
 
 require_once __DIR__ . '/vendor/autoload.php';
 require 'helper.php';
@@ -32,7 +32,7 @@ $jsonGraphData = getfullGraph($rootDir);
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 
     <?php echo loadSettings($rootDir); ?>
-    <link rel="stylesheet" href=".styles/app.css" type="text/css" >
+    <link rel="stylesheet" href=".styles/app.css" type="text/css">
     <link id="highlight-js" rel="stylesheet" href=".styles/atom-one-dark.min.css" type="text/css">
     <link rel="stylesheet" href=".styles/perlite.css" type="text/css">
     <link rel="stylesheet" href=".styles/vis-network.min.css" type="text/css">
@@ -92,6 +92,8 @@ $jsonGraphData = getfullGraph($rootDir);
             <div class="workspace is-left-sidedock-open">
                 <div class="workspace-ribbon side-dock-ribbon mod-left">
                     <div class="sidebar-toggle-button mod-left sidebar" aria-label="" aria-label-position="right">
+
+
                         <div class="clickable-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="svg-icon sidebar-left">
@@ -115,6 +117,23 @@ $jsonGraphData = getfullGraph($rootDir);
                                 <path d="M18 9v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9"></path>
                                 <path d="M12 12v3"></path>
                             </svg></div>
+                    </div>
+                    <div class="side-dock-actions">
+                        <div class="clickable-icon side-dock-ribbon-action" aria-label="Open random note"
+                            data-tooltip-position="right" data-tooltip-delay="300">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="svg-icon dice">
+                                <path
+                                    d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z" />
+                                <path
+                                    d="M17 16C17 16.5523 16.5523 17 16 17C15.4477 17 15 16.5523 15 16C15 15.4477 15.4477 15 16 15C16.5523 15 17 15.4477 17 16Z" />
+                                <path
+                                    d="M13 12C13 12.5523 12.5523 13 12 13C11.4477 13 11 12.5523 11 12C11 11.4477 11.4477 11 12 11C12.5523 11 13 11.4477 13 12Z" />
+                                <path
+                                    d="M9 8C9 8.55228 8.55228 9 8 9C7.44772 9 7 8.55228 7 8C7 7.44772 7.44772 7 8 7C8.55228 7 9 7.44772 9 8Z" />
+                            </svg>
+                        </div>
                     </div>
                     <div class="side-dock-settings">
                         <div class="clickable-icon side-dock-ribbon-action" aria-label="Help"
@@ -150,41 +169,67 @@ $jsonGraphData = getfullGraph($rootDir);
                         </div>
                         <div class="workspace-tab-header-container">
                             <div class="workspace-tab-header-container-inner" style="--animation-dur:250ms;">
-                                <div class="workspace-tab-header is-active" draggable="true" aria-label="Files" aria-label-delay="50" data-type="file-explorer">
+                                <div class="workspace-tab-header is-active" draggable="true" aria-label="Files"
+                                    aria-label-delay="50" data-type="file-explorer">
                                     <div class="workspace-tab-header-inner">
-                                        <div class="workspace-tab-header-inner-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-folder-closed">
-                                                <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"></path>
+                                        <div class="workspace-tab-header-inner-icon"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="svg-icon lucide-folder-closed">
+                                                <path
+                                                    d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z">
+                                                </path>
                                                 <path d="M2 10h20"></path>
                                             </svg></div>
                                         <div class="workspace-tab-header-inner-title">Files</div>
                                         <div class="workspace-tab-header-status-container"></div>
-                                        <div class="workspace-tab-header-inner-close-button" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-x">
+                                        <div class="workspace-tab-header-inner-close-button" aria-label="Close"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="svg-icon lucide-x">
                                                 <line x1="18" y1="6" x2="6" y2="18"></line>
                                                 <line x1="6" y1="6" x2="18" y2="18"></line>
                                             </svg></div>
                                     </div>
                                 </div>
-                                <div class="workspace-tab-header" draggable="true" aria-label="Search" aria-label-delay="50" data-type="search">
+                                <div class="workspace-tab-header" draggable="true" aria-label="Search"
+                                    aria-label-delay="50" data-type="search">
                                     <div class="workspace-tab-header-inner">
-                                        <div class="workspace-tab-header-inner-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-search">
+                                        <div class="workspace-tab-header-inner-icon"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="svg-icon lucide-search">
                                                 <circle cx="11" cy="11" r="8"></circle>
                                                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                                             </svg></div>
                                         <div class="workspace-tab-header-inner-title">Search</div>
                                         <div class="workspace-tab-header-status-container"></div>
-                                        <div class="workspace-tab-header-inner-close-button" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-x">
+                                        <div class="workspace-tab-header-inner-close-button" aria-label="Close"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="svg-icon lucide-x">
                                                 <line x1="18" y1="6" x2="6" y2="18"></line>
                                                 <line x1="6" y1="6" x2="18" y2="18"></line>
                                             </svg></div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="workspace-tab-header-new-tab"><span class="clickable-icon" aria-label="New tab"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-plus">
+                            <div class="workspace-tab-header-new-tab"><span class="clickable-icon"
+                                    aria-label="New tab"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-plus">
                                         <line x1="12" y1="5" x2="12" y2="19"></line>
                                         <line x1="5" y1="12" x2="19" y2="12"></line>
                                     </svg></span></div>
                             <div class="workspace-tab-header-spacer"></div>
-                            <div class="workspace-tab-header-tab-list"><span class="clickable-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-chevron-down">
+                            <div class="workspace-tab-header-tab-list"><span class="clickable-icon"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="svg-icon lucide-chevron-down">
                                         <polyline points="6 9 12 15 18 9"></polyline>
                                     </svg></span></div>
                         </div> <!-- left dock -->
@@ -192,13 +237,49 @@ $jsonGraphData = getfullGraph($rootDir);
                             <div class="workspace-leaf">
                                 <hr class="workspace-leaf-resize-handle">
                                 <div class="workspace-leaf-content" data-type="file-explorer">
+                                    <?php echo $customSection; ?>
+                                    <!-- custom page sidebar -->
+                                    <!-- <h3 class="sm-site-title"> Perlite</h3> -->
+                                    <!-- <div class="sm-site-title">&nbsp;</div>
+                                    <div class="custom-page">
+
+                                    
+                                    
+                                    <img class="custom-page-logo" src="logo1.jpg" alt="Custom Logo">
+                                    <div> &nbsp;</div>
+                                    <div class="sm-site-desc"><i>IT-Security Notes and Writeups</i></div>
+
+                                    <div><ul class="social-media-list">
+                                        <li><a href="https://github.com/secure-77"><img class="social-logo" src="github-color.svg" alt="Custom Logo"></a></li>
+                                        <li><a href="https://twitter.com/secure_sec77"><img class="social-logo" src="x-color.svg" alt="Custom Logo"></a></li>
+                                        <li><a href="https://secure77.de"><img class="social-logo" src="fontawesome-color.svg" alt="Custom Logo"></a></li>
+                                    </ul> -->
+
+                                    <!-- <div><ul class="social-media-list">
+                                        <li><img class="social-logo" src="github-color.svg" alt="Custom Logo"> &nbsp;<a href="https://github.com/secure-77">Secure-77</a></li>
+                                        <li><img class="social-logo" src="x-color.svg" alt="Custom Logo"> &nbsp;<a href="https://github.com/secure-77">Twitter (X)</a></li>
+                                        <li><img class="social-logo" src="fontawesome-color.svg" alt="Custom Logo"> &nbsp;<a href="https://github.com/secure-77">secure77.de</a></li>
+                                    </ul>
+ 
+                                    </div>
+                                    </div> -->
+
+                                    <!-- nav sidebar-left -->
                                     <div class="nav-header">
                                         <div class="nav-buttons-container">
-                                            <div class="clickable-icon nav-action-button" aria-label="Collapse all" style="display: none"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-chevrons-down-up">
+                                            <div class="clickable-icon nav-action-button" aria-label="Collapse all"
+                                                style="display: none"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                    height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="svg-icon lucide-chevrons-down-up">
                                                     <path d="m7 20 5-5 5 5"></path>
                                                     <path d="m7 4 5 5 5-5"></path>
                                                 </svg></div>
-                                            <div class="clickable-icon nav-action-button" aria-label="Expand all"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-chevrons-up-down">
+                                            <div class="clickable-icon nav-action-button" aria-label="Expand all"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="svg-icon lucide-chevrons-up-down">
                                                     <path d="m7 15 5 5 5-5"></path>
                                                     <path d="m7 9 5-5 5 5"></path>
                                                 </svg></div>
@@ -206,6 +287,12 @@ $jsonGraphData = getfullGraph($rootDir);
                                     </div>
                                     <div class="nav-files-container node-insert-event" style="position: relative;">
                                         <div class="tree-item nav-folder mod-root">
+                                            <div class="tree-item-self nav-folder-title" data-path="/">
+                                                <!-- <div class="nav-folder-collapse-indicator collapse-icon"></div> -->
+                                                <div class="tree-item-inner nav-folder-title-content">
+                                                    <?php echo $vaultName ?>
+                                                </div>
+                                            </div>
                                             <div class="tree-item-children nav-folder-children">
                                                 <div style="width: 276px; height: 0.1px; margin-bottom: 0px;"></div>
                                                 <?php echo $menu ?>
@@ -220,7 +307,11 @@ $jsonGraphData = getfullGraph($rootDir);
                                 <div class="workspace-leaf-content" data-type="search">
                                     <div class="nav-header">
                                         <div class="nav-buttons-container">
-                                            <div class="clickable-icon nav-action-button is-active" aria-label="Collapse results"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-list">
+                                            <div class="clickable-icon nav-action-button is-active"
+                                                aria-label="Collapse results"><svg xmlns="http://www.w3.org/2000/svg"
+                                                    width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round" class="svg-icon lucide-list">
                                                     <line x1="8" y1="6" x2="21" y2="6"></line>
                                                     <line x1="8" y1="12" x2="21" y2="12"></line>
                                                     <line x1="8" y1="18" x2="21" y2="18"></line>
@@ -230,11 +321,14 @@ $jsonGraphData = getfullGraph($rootDir);
                                                 </svg></div>
                                         </div>
                                     </div>
-                                    <div class="search-input-container"><input enterkeyhint="search" type="search" placeholder="Type to start search...">
-                                        <div class="search-input-clear-button" aria-label="Clear search" style="display: none;"></div>
+                                    <div class="search-input-container"><input enterkeyhint="search" type="search"
+                                            placeholder="Type to start search...">
+                                        <div class="search-input-clear-button" aria-label="Clear search"
+                                            style="display: none;"></div>
                                     </div>
                                     <div class="search-info-container" style="display: none;"></div>
-                                    <div class="search-result-container mod-global-search node-insert-event" style="position: relative;">
+                                    <div class="search-result-container mod-global-search node-insert-event"
+                                        style="position: relative;">
                                         <div class="search-results-children" style="min-height: 0px;">
                                             <div style="width: 1px; height: 0.1px; margin-bottom: 0px;"></div>
                                         </div>
@@ -379,7 +473,8 @@ $jsonGraphData = getfullGraph($rootDir);
                                                             <div class="setting-item-control">
                                                                 <div
                                                                     class="checkbox-container mod-small graphNoLinkOption is-enabled">
-                                                                    <input type="checkbox" tabindex="0"></div>
+                                                                    <input type="checkbox" tabindex="0">
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="setting-item mod-toggle">
@@ -392,7 +487,8 @@ $jsonGraphData = getfullGraph($rootDir);
                                                             <div class="setting-item-control">
                                                                 <div
                                                                     class="checkbox-container mod-small graphAutoReloadOption is-enabled">
-                                                                    <input type="checkbox" tabindex="0"></div>
+                                                                    <input type="checkbox" tabindex="0">
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="setting-item">
@@ -605,7 +701,7 @@ $jsonGraphData = getfullGraph($rootDir);
                                         <div class="nav-header">
                                             <div class="view-header-nav-buttons">
                                                 <a class="clickable-icon view-action" aria-label="Open localGraph"
-                                                    style="display: none"><svg xmlns="http://www.w3.org/2000/svg"
+                                                    ><svg xmlns="http://www.w3.org/2000/svg"
                                                         width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                         stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                                         stroke-linejoin="round" class="svg-icon lucide-git-fork">
@@ -637,11 +733,20 @@ $jsonGraphData = getfullGraph($rootDir);
                                         </div>
 
                                         <div class="backlink-pane node-insert-event" style="position: relative;">
-                                            <div id="outline" class="outline" style="display: none">
-                                                <h3>Table of Contents</h3>
+
+
+                                            <div id="outline" class="outline" style="display: unset">
+                                                <div class="sidebar-top">
+                                                    <h3>Content</h3>
+                                                </div>
 
                                                 <div id="toc"></div>
 
+                                            </div>
+                                            <div id=localGraph>
+                                            <h3>Graph</h3>
+
+                                            <div id="mynetwork"></div>
                                             </div>
                                             <div class="tree-item-self" aria-label-position="left"><span
                                                     class="tree-item-icon collapse-icon"><svg
@@ -656,7 +761,7 @@ $jsonGraphData = getfullGraph($rootDir);
                                                         id="nodeCount">0</span></div>
 
                                             </div>
-                                            <div id="mynetwork"></div>
+
 
                                         </div>
                                     </div>

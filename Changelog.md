@@ -1,3 +1,24 @@
+## 1.5.8
+- merged PR #111 thanks to @selfiens
+- merged PR #112 thanks to @selfiens
+- merged PR #106 thanks to @Shardbyte
+- updated obsidian app.css
+- fixed yaml frontmatter [#107](https://github.com/secure-77/Perlite/issues/107)
+- added support for alternate image text [#92](https://github.com/secure-77/Perlite/issues/92)
+- added support for collapsed callouts [#113](https://github.com/secure-77/Perlite/issues/113)
+- added support for embedded pdf and videos [#105](https://github.com/secure-77/Perlite/issues/105)
+- added random node function [#109](https://github.com/secure-77/Perlite/issues/109)
+- added support for absolut pathes [#90](https://github.com/secure-77/Perlite/issues/90)
+- updated Demo Documetns and Themes
+- updated build.sh to force composer updates
+- updated highlight.js to 11.9.0
+- updated katex to 0.16.9
+- updated vis-network to 9.1.9
+- added new custom logo and social media section
+- fixed issue Folder arrow marker randomly disappears [#94](https://github.com/secure-77/Perlite/issues/94)
+- changed to show TOC and local Graph at the same time
+
+
 ## 1.5.7
 - added social media meta tags and variables
 - added github action for docker build process and arm support, issue #65

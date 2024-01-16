@@ -1,21 +1,23 @@
 ---
 tags:
   - tag1
-  - tag2
   - tag-test
+  - readme
+aliases:
+  - Callouts
+  - Frontsmatter
+  - Sample
 ---
 
-YAML front matter document
+Im a YAML front matter document
 
 
-Callout with title
-
-
-Regular blockquote
+# Blockquots
 
 > Lorem ipsum
 > Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et gravida diam, et varius magna. Proin `id felis quis nisl` gravida auctor a eu est. In viverra dui viverra placerat cursus. Curabitur non commodo mi. Mauris volutpat nisl vitae nulla efficitur condimentum. Nulla facilisi. Maecenas malesuada purus mi, eget fringilla quam ultrices sit amet.
 
+##  Callouts
 
 > [!note]
 > Lorem ipsum dolor sit amet
@@ -57,3 +59,12 @@ Regular blockquote
 
 > [!quote]
 > Lorem ipsum dolor sit amet
+
+
+## Collapsible Callouts
+
+> [!note]+ Information the user should notice even if skimming. 
+> Test
+> > [!note]+ Information the user should notice even if skimming. 
+>> Test
+
